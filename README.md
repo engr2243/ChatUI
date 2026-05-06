@@ -93,6 +93,25 @@ Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
+## Settings
+
+The Settings panel lets you configure the app at runtime without touching `config.json` or restarting the server.
+
+**How to open it:** Click the gear icon (⚙) in the bottom-left corner of the sidebar.
+
+| Field | Description |
+|---|---|
+| **API Endpoint URL** | The n8n webhook that receives messages. Receives `{ session_id, chat_input, attachment, … }` and must return `{ output }`. Required — the app will not send messages until this is set. |
+| **User Name** | Your display name. Sent with every request as `user_name` and used as the sender identity in the n8n payload. |
+| **Email Address** | Your email address. Sent with every request as `email_address` and used as the sender address in the n8n payload. |
+| **Agent URL** | The Google Cloud Run service URL for the target agent (e.g. `https://my-agent-xyz-uc.a.run.app`). Passed through to n8n as `agent_url` so the workflow knows which Cloud Run service to invoke. |
+
+Click **Save** (or press `Enter`) to apply. Changes take effect immediately and are persisted to `config.json` on disk — no restart needed.
+
+> If the API endpoint is not configured on first load, a toast notification will remind you to open Settings.
+
+---
+
 ## How It Works
 
 1. The user types a message (and optionally attaches a file) in the chat UI.
